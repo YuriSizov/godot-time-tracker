@@ -1,6 +1,8 @@
 # Godot Time Tracker
 A small editor widget which provides basic functions for tracking your time with the Godot editor. It allows to divide your worktime in sessions, name them and track which main screen view you are using the most.
 
+![Plugin preview](/images/preview-1.png)
+
 Developed in and tested against Godot 3.2.
 
 ## Installation
