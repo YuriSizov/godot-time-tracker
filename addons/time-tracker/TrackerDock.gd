@@ -1,19 +1,19 @@
 tool
-extends PanelContainer
+extends Control
 
 # Node references
-onready var status_label : Label = $Layout/Status/StatusLabel
-onready var status_value_label : Label = $Layout/Status/StatusValue
-onready var session_name_input : LineEdit = $Layout/Status/SessionName
-onready var sessions_label : Label = $Layout/SessionsHeader/SessionsLabel
-onready var sessions_container : Control = $Layout/SessionsContainer
-onready var session_list : Control = $Layout/SessionsContainer/Sessions
-onready var no_sessions_label : Label = $Layout/NoSessionsLabel
+onready var status_label : Label = $Margin/Layout/Status/StatusLabel
+onready var status_value_label : Label = $Margin/Layout/Status/StatusValue
+onready var session_name_input : LineEdit = $Margin/Layout/Status/SessionName
+onready var sessions_label : Label = $Margin/Layout/SessionsHeader/SessionsLabel
+onready var sessions_container : Control = $Margin/Layout/SessionsContainer
+onready var session_list : Control = $Margin/Layout/SessionsContainer/Sessions
+onready var no_sessions_label : Label = $Margin/Layout/NoSessionsLabel
 
-onready var start_button : Button = $Layout/Controls/StartButton
-onready var stop_button : Button = $Layout/Controls/StopButton
-onready var lap_button : Button = $Layout/Controls/LapButton
-onready var clear_button : Button = $Layout/SessionsHeader/ClearButton
+onready var start_button : Button = $Margin/Layout/Controls/StartButton
+onready var stop_button : Button = $Margin/Layout/Controls/StopButton
+onready var lap_button : Button = $Margin/Layout/Controls/LapButton
+onready var clear_button : Button = $Margin/Layout/SessionsHeader/ClearButton
 
 # Private properties
 var _active_tracking : bool = false
