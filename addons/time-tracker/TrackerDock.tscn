@@ -1,0 +1,154 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://addons/time-tracker/TrackerDock.gd" type="Script" id=1]
+
+[sub_resource type="Image" id=1]
+data = {
+"data": PoolByteArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ),
+"format": "LumAlpha8",
+"height": 16,
+"mipmaps": false,
+"width": 16
+}
+
+[sub_resource type="ImageTexture" id=2]
+flags = 4
+flags = 4
+image = SubResource( 1 )
+size = Vector2( 16, 16 )
+
+[node name="TrackerDock" type="PanelContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -655.0
+margin_bottom = -346.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Layout" type="VBoxContainer" parent="."]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 362.0
+margin_bottom = 247.0
+rect_min_size = Vector2( 320, 240 )
+
+[node name="Status" type="HBoxContainer" parent="Layout"]
+margin_right = 355.0
+margin_bottom = 24.0
+
+[node name="StatusLabel" type="Label" parent="Layout/Status"]
+margin_top = 5.0
+margin_right = 47.0
+margin_bottom = 19.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Status: "
+
+[node name="StatusValue" type="Label" parent="Layout/Status"]
+margin_left = 51.0
+margin_top = 5.0
+margin_right = 231.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "On a break"
+
+[node name="SessionName" type="LineEdit" parent="Layout/Status"]
+margin_left = 235.0
+margin_right = 355.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 120, 0 )
+text = "Session #1"
+
+[node name="Padding" type="Control" parent="Layout"]
+margin_top = 28.0
+margin_right = 355.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 0, 4 )
+
+[node name="Controls" type="HBoxContainer" parent="Layout"]
+margin_top = 36.0
+margin_right = 355.0
+margin_bottom = 58.0
+
+[node name="StartButton" type="Button" parent="Layout/Controls"]
+margin_right = 112.0
+margin_bottom = 22.0
+hint_tooltip = "Start tracking a new session."
+size_flags_horizontal = 3
+text = "Start Session"
+icon = SubResource( 2 )
+
+[node name="StopButton" type="Button" parent="Layout/Controls"]
+margin_left = 116.0
+margin_right = 237.0
+margin_bottom = 22.0
+hint_tooltip = "Stop tracking the current session and record it."
+size_flags_horizontal = 3
+disabled = true
+text = "Finish Session"
+icon = SubResource( 2 )
+
+[node name="LapButton" type="Button" parent="Layout/Controls"]
+margin_left = 241.0
+margin_right = 355.0
+margin_bottom = 22.0
+hint_tooltip = "Mark the current session as finished, and immediately start a new one."
+size_flags_horizontal = 3
+disabled = true
+text = "Mark Session"
+icon = SubResource( 2 )
+
+[node name="Padding2" type="Control" parent="Layout"]
+margin_top = 62.0
+margin_right = 355.0
+margin_bottom = 66.0
+rect_min_size = Vector2( 0, 4 )
+
+[node name="SessionsHeader" type="HBoxContainer" parent="Layout"]
+margin_top = 70.0
+margin_right = 355.0
+margin_bottom = 90.0
+
+[node name="SessionsLabel" type="Label" parent="Layout/SessionsHeader"]
+margin_top = 3.0
+margin_right = 307.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Recorded Sessions:"
+
+[node name="ClearButton" type="Button" parent="Layout/SessionsHeader"]
+margin_left = 311.0
+margin_right = 355.0
+margin_bottom = 20.0
+hint_tooltip = "Clear all recorded sessions."
+text = "Clear"
+flat = true
+
+[node name="Padding3" type="Control" parent="Layout"]
+margin_top = 94.0
+margin_right = 355.0
+margin_bottom = 98.0
+rect_min_size = Vector2( 0, 4 )
+
+[node name="SessionsContainer" type="ScrollContainer" parent="Layout"]
+visible = false
+margin_top = 96.0
+margin_right = 1010.0
+margin_bottom = 568.0
+rect_min_size = Vector2( 0, 40 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Sessions" type="VBoxContainer" parent="Layout/SessionsContainer"]
+margin_right = 1010.0
+size_flags_horizontal = 3
+
+[node name="NoSessionsLabel" type="Label" parent="Layout"]
+margin_top = 102.0
+margin_right = 355.0
+margin_bottom = 116.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Finished sessions will be displayed here."
+align = 1
