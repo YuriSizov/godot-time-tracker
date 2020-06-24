@@ -1,3 +1,16 @@
-# Godot
-.import
+
+# Godot-specific ignores
+.import/
 default_env.tres
+
+# Imported translations (automatically generated from CSV files)
+*.translation
+
+# Mono-specific ignores
+.mono/
+data_*/
+mono_crash.*.json
+
+# System/tool-specific ignores
+.directory
+*~
