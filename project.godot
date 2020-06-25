@@ -16,8 +16,8 @@ _global_script_class_icons={
 [application]
 
 config/name="Plugin: Time Tracker"
-run/main_scene="res://addons/time_tracker/TrackerDock.tscn"
-config/icon="res://icon.png"
+run/main_scene="res://addons/time-tracker/TrackerDock.tscn"
+config/icon="res://addons/time-tracker/plugin-icon.png"
 
 [editor_plugins]
 

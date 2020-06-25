@@ -13,17 +13,24 @@ onready var expand_sections_button : Button = $Information/ExpandSectionsButton
 onready var sections_container : Control = $Sections
 onready var section_list : Control = $Sections/Layout/SectionList
 onready var section_graph : Control = $Sections/Layout/SectionGraph
+onready var started_time : Control = $Sections/Layout/StartedTime
+onready var started_time_label : Label = $Sections/Layout/StartedTime/StartedTimeLabel
+onready var started_time_value : Label = $Sections/Layout/StartedTime/StartedTimeValue
+onready var stopped_time : Control = $Sections/Layout/StoppedTime
+onready var stopped_time_label : Label = $Sections/Layout/StoppedTime/StoppedTimeLabel
+onready var stopped_time_value : Label = $Sections/Layout/StoppedTime/StoppedTimeValue
 
 # Public properties
 export var session_name : String = "" setget set_session_name
 export var elapsed_time : int = 0 setget set_elapsed_time
-export var started_at : int = 0
-export var stopped_at : int = 0
+export var started_at : int = 0 setget set_started_at
+export var stopped_at : int = 0 setget set_stopped_at
 export var sections : Array = [] setget set_sections
 
 # Private properties
 var _section_colors : Dictionary = {
 	"_default": Color.white,
+	"_paused": Color.darkgray,
 	"2D": Color.aqua,
 	"3D": Color.rosybrown,
 	"Script": Color.yellow,
@@ -37,6 +44,8 @@ func _ready() -> void:
 	_update_theme()
 	_update_name()
 	_update_elapsed_time()
+	_update_started_time()
+	_update_stopped_time()
 	_update_sections()
 	
 	section_graph.section_colors = _section_colors
@@ -49,8 +58,7 @@ func _ready() -> void:
 	expand_sections_button.connect("pressed", self, "_on_expand_sections_pressed")
 
 # Helpers
-func _format_time(msec: int) -> String:
-	var elapsed_seconds = msec / 1000
+func _format_time(elapsed_seconds: int) -> String:
 	var time_string = ""
 	
 	if (elapsed_seconds == 0):
@@ -69,6 +77,21 @@ func _format_time(msec: int) -> String:
 	
 	return time_string
 
+func _format_datetime(unix_time: int) -> String:
+	var timezone = OS.get_time_zone_info()
+	var datetime = OS.get_datetime_from_unix_time(unix_time + timezone["bias"] * 60)
+	
+	return str(datetime["hour"]) + ":" + str(datetime["minute"]).pad_zeros(2)
+
+func _format_datetime_iso(unix_time: int) -> String:
+	var datetime = OS.get_datetime_from_unix_time(unix_time)
+	
+	var result = ""
+	result += str(datetime["year"]) + "-" + str(datetime["month"]).pad_zeros(2) + "-" + str(datetime["day"]).pad_zeros(2)
+	result += "T" + str(datetime["hour"]).pad_zeros(2) + ":" + str(datetime["minute"]).pad_zeros(2) + ":" + str(datetime["second"]).pad_zeros(2) + "Z"
+	
+	return result
+
 func _update_theme() -> void:
 	if (!Engine.editor_hint || !is_inside_tree()):
 		return
@@ -83,6 +106,10 @@ func _update_theme() -> void:
 		panel_style.bg_color = get_color("dark_color_1", "Editor")
 	sections_container.add_stylebox_override("panel", panel_style)
 	
+	started_time_label.add_color_override("font_color", get_color("contrast_color_2", "Editor"))
+	stopped_time_label.add_color_override("font_color", get_color("contrast_color_2", "Editor"))
+	
+	_section_colors["_paused"] = get_color("contrast_color_1", "Editor")
 	_section_colors["2D"] = get_color("axis_z_color", "Editor")
 	_section_colors["3D"] = get_color("error_color", "Editor")
 	_section_colors["Script"] = get_color("warning_color", "Editor")
@@ -100,6 +127,20 @@ func _update_elapsed_time() -> void:
 		return
 	
 	elapsed_time_label.text = _format_time(elapsed_time)
+
+func _update_started_time() -> void:
+	if (!is_inside_tree()):
+		return
+	
+	started_time_value.text = _format_datetime(started_at)
+	started_time.hint_tooltip = _format_datetime_iso(started_at)
+
+func _update_stopped_time() -> void:
+	if (!is_inside_tree()):
+		return
+	
+	stopped_time_value.text = _format_datetime(stopped_at)
+	stopped_time.hint_tooltip = _format_datetime_iso(stopped_at)
 
 func _update_sections() -> void:
 	if (!is_inside_tree()):
@@ -133,6 +174,9 @@ func _update_sections() -> void:
 		
 		var section_node = section_scene.instance()
 		section_node.section_name = section_name
+		if (section_name == "_paused"):
+			section_node.section_name = "> Intermission"
+		
 		section_node.section_color = section_color
 		section_node.elapsed_time = _format_time(section_data.elapsed_time)
 		section_list.add_child(section_node)
@@ -149,6 +193,14 @@ func set_session_name(value: String) -> void:
 func set_elapsed_time(value: int) -> void:
 	elapsed_time = value
 	_update_elapsed_time()
+
+func set_started_at(value: int) -> void:
+	started_at = value
+	_update_started_time()
+
+func set_stopped_at(value: int) -> void:
+	stopped_at = value
+	_update_stopped_time()
 
 func set_sections(value: Array) -> void:
 	sections = value

@@ -1,9 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://addons/time-tracker/TrackerSession.gd" type="Script" id=1]
 [ext_resource path="res://addons/time-tracker/SectionGraph.gd" type="Script" id=2]
 
-[sub_resource type="Image" id=3]
+[sub_resource type="Image" id=7]
 data = {
 "data": PoolByteArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ),
 "format": "LumAlpha8",
@@ -15,8 +15,27 @@ data = {
 [sub_resource type="ImageTexture" id=2]
 flags = 4
 flags = 4
-image = SubResource( 3 )
+image = SubResource( 7 )
 size = Vector2( 16, 16 )
+
+[sub_resource type="Image" id=8]
+data = {
+"data": PoolByteArray( 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42 ),
+"format": "RGB8",
+"height": 8,
+"mipmaps": false,
+"width": 8
+}
+
+[sub_resource type="ImageTexture" id=5]
+flags = 4
+flags = 4
+image = SubResource( 8 )
+size = Vector2( 8, 8 )
+
+[sub_resource type="StyleBoxTexture" id=6]
+texture = SubResource( 5 )
+region_rect = Rect2( 0, 0, 8, 8 )
 
 [node name="TrackerSession" type="VBoxContainer"]
 anchor_right = 1.0
@@ -33,13 +52,15 @@ margin_bottom = 22.0
 
 [node name="NameLabel" type="Label" parent="Information"]
 margin_top = 4.0
-margin_right = 120.0
+margin_right = 494.0
 margin_bottom = 18.0
 rect_min_size = Vector2( 120, 0 )
+size_flags_horizontal = 3
+clip_text = true
 
 [node name="EditNameButton" type="Button" parent="Information"]
-margin_left = 124.0
-margin_right = 152.0
+margin_left = 498.0
+margin_right = 526.0
 margin_bottom = 22.0
 hint_tooltip = "Edit the name of this session."
 icon = SubResource( 2 )
@@ -71,19 +92,21 @@ icon = SubResource( 2 )
 flat = true
 
 [node name="ElapsedLabel" type="Label" parent="Information"]
-margin_left = 156.0
+margin_left = 530.0
 margin_top = 4.0
-margin_right = 1008.0
+margin_right = 1024.0
 margin_bottom = 18.0
 size_flags_horizontal = 3
 text = "less than a second"
 align = 2
 
 [node name="ExpandSectionsButton" type="Button" parent="Information"]
+visible = false
 margin_left = 1012.0
 margin_right = 1024.0
 margin_bottom = 22.0
 hint_tooltip = "Show detailed information."
+icon = SubResource( 2 )
 flat = true
 
 [node name="Sections" type="PanelContainer" parent="."]
@@ -91,10 +114,39 @@ visible = false
 margin_top = 26.0
 margin_right = 1024.0
 margin_bottom = 40.0
+custom_styles/panel = SubResource( 6 )
 
 [node name="Layout" type="VBoxContainer" parent="Sections"]
 margin_right = 40.0
 margin_bottom = 40.0
+
+[node name="StartedTime" type="HBoxContainer" parent="Sections/Layout"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="StartedTimeLabel" type="Label" parent="Sections/Layout/StartedTime"]
+margin_right = 40.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "Started: "
+
+[node name="StartedTimeValue" type="Label" parent="Sections/Layout/StartedTime"]
+margin_right = 40.0
+margin_bottom = 14.0
+
+[node name="StoppedTime" type="HBoxContainer" parent="Sections/Layout"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="StoppedTimeLabel" type="Label" parent="Sections/Layout/StoppedTime"]
+margin_right = 40.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "Stopped: "
+
+[node name="StoppedTimeValue" type="Label" parent="Sections/Layout/StoppedTime"]
+margin_right = 40.0
+margin_bottom = 14.0
 
 [node name="SectionList" type="VBoxContainer" parent="Sections/Layout"]
 margin_left = 7.0
@@ -107,3 +159,8 @@ margin_bottom = 24.0
 rect_min_size = Vector2( 0, 24 )
 size_flags_horizontal = 3
 script = ExtResource( 2 )
+
+[node name="HSeparator" type="HSeparator" parent="."]
+margin_top = 26.0
+margin_right = 1024.0
+margin_bottom = 30.0
