@@ -20,8 +20,13 @@ size = Vector2( 16, 16 )
 [node name="TrackerDock" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_right = -664.0
+margin_bottom = -360.0
 rect_min_size = Vector2( 360, 240 )
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Margin" type="MarginContainer" parent="."]
 anchor_right = 1.0
@@ -31,14 +36,14 @@ __meta__ = {
 }
 
 [node name="Layout" type="VBoxContainer" parent="Margin"]
-margin_right = 1024.0
-margin_bottom = 600.0
+margin_right = 360.0
+margin_bottom = 240.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Status" type="HBoxContainer" parent="Margin/Layout"]
-margin_right = 1024.0
+margin_right = 360.0
 margin_bottom = 24.0
 
 [node name="StatusLabel" type="Label" parent="Margin/Layout/Status"]
@@ -51,14 +56,14 @@ text = "Status: "
 [node name="StatusValue" type="Label" parent="Margin/Layout/Status"]
 margin_left = 51.0
 margin_top = 5.0
-margin_right = 900.0
+margin_right = 236.0
 margin_bottom = 19.0
 size_flags_horizontal = 3
 text = "On a break"
 
 [node name="SessionName" type="LineEdit" parent="Margin/Layout/Status"]
-margin_left = 904.0
-margin_right = 1024.0
+margin_left = 240.0
+margin_right = 360.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 120, 0 )
 text = "Session #1"
@@ -67,17 +72,17 @@ caret_blink_speed = 0.5
 
 [node name="Padding" type="Control" parent="Margin/Layout"]
 margin_top = 28.0
-margin_right = 1024.0
+margin_right = 360.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 0, 4 )
 
 [node name="Controls" type="HBoxContainer" parent="Margin/Layout"]
 margin_top = 36.0
-margin_right = 1024.0
+margin_right = 360.0
 margin_bottom = 58.0
 
 [node name="StartButton" type="Button" parent="Margin/Layout/Controls"]
-margin_right = 253.0
+margin_right = 87.0
 margin_bottom = 22.0
 hint_tooltip = "Start tracking a new session."
 size_flags_horizontal = 3
@@ -85,8 +90,8 @@ text = "Start"
 icon = SubResource( 2 )
 
 [node name="PauseButton" type="Button" parent="Margin/Layout/Controls"]
-margin_left = 257.0
-margin_right = 510.0
+margin_left = 91.0
+margin_right = 178.0
 margin_bottom = 22.0
 hint_tooltip = "Put tracking of the current session on hold."
 size_flags_horizontal = 3
@@ -106,8 +111,8 @@ text = "Resume"
 icon = SubResource( 2 )
 
 [node name="StopButton" type="Button" parent="Margin/Layout/Controls"]
-margin_left = 514.0
-margin_right = 767.0
+margin_left = 182.0
+margin_right = 269.0
 margin_bottom = 22.0
 hint_tooltip = "Stop tracking the current session and record it."
 size_flags_horizontal = 3
@@ -116,8 +121,8 @@ text = "Finish"
 icon = SubResource( 2 )
 
 [node name="LapButton" type="Button" parent="Margin/Layout/Controls"]
-margin_left = 771.0
-margin_right = 1024.0
+margin_left = 273.0
+margin_right = 360.0
 margin_bottom = 22.0
 hint_tooltip = "Mark the current session as finished, and immediately start a new one."
 size_flags_horizontal = 3
@@ -127,26 +132,26 @@ icon = SubResource( 2 )
 
 [node name="Padding2" type="Control" parent="Margin/Layout"]
 margin_top = 62.0
-margin_right = 1024.0
+margin_right = 360.0
 margin_bottom = 66.0
 rect_min_size = Vector2( 0, 4 )
 
 [node name="SessionsHeader" type="HBoxContainer" parent="Margin/Layout"]
 margin_top = 70.0
-margin_right = 1024.0
+margin_right = 360.0
 margin_bottom = 90.0
 
 [node name="SessionsLabel" type="Label" parent="Margin/Layout/SessionsHeader"]
 margin_top = 3.0
-margin_right = 976.0
+margin_right = 312.0
 margin_bottom = 17.0
 size_flags_horizontal = 3
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Recorded Sessions:"
 
 [node name="ClearButton" type="Button" parent="Margin/Layout/SessionsHeader"]
-margin_left = 980.0
-margin_right = 1024.0
+margin_left = 316.0
+margin_right = 360.0
 margin_bottom = 20.0
 hint_tooltip = "Clear all recorded sessions."
 text = "Clear"
@@ -154,13 +159,13 @@ flat = true
 
 [node name="Padding3" type="Control" parent="Margin/Layout"]
 margin_top = 94.0
-margin_right = 1024.0
+margin_right = 360.0
 margin_bottom = 98.0
 rect_min_size = Vector2( 0, 4 )
 
 [node name="HSeparator" type="HSeparator" parent="Margin/Layout"]
 margin_top = 102.0
-margin_right = 1024.0
+margin_right = 360.0
 margin_bottom = 106.0
 
 [node name="SessionsContainer" type="ScrollContainer" parent="Margin/Layout"]
@@ -178,7 +183,7 @@ size_flags_horizontal = 3
 
 [node name="NoSessionsLabel" type="Label" parent="Margin/Layout"]
 margin_top = 110.0
-margin_right = 1024.0
+margin_right = 360.0
 margin_bottom = 124.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Finished sessions will be displayed here."

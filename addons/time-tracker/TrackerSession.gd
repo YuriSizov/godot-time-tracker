@@ -3,7 +3,7 @@ extends VBoxContainer
 
 # Node references
 onready var name_label : Label = $Information/NameLabel
-onready var name_input : Label = $Information/NameEdit
+onready var name_input : LineEdit = $Information/NameEdit
 onready var edit_name_button : Button = $Information/EditNameButton
 onready var save_name_button : Button = $Information/SaveNameButton
 onready var cancel_name_button : Button = $Information/CancelNameButton
