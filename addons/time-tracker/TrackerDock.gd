@@ -129,6 +129,40 @@ func _add_paused_section(paused_stopped: int) -> void:
 		"stopped_at": paused_stopped,
 	})
 
+func _mock_session() -> Dictionary:
+	if (!_active_tracking):
+		return {}
+	
+	var tracker_stopped = OS.get_unix_time()
+	
+	var session_data := {
+			"session_name": session_name_input.text,
+			"elapsed_time": tracker_stopped - _tracker_started,
+			"started_at": _tracker_started,
+			"stopped_at": tracker_stopped,
+			"sections": _tracker_sections.duplicate(true),
+	}
+	
+	var active_section := {}
+	if (_paused_tracking):
+		active_section = {
+			"view": "_paused",
+			"elapsed_time": tracker_stopped - _paused_started,
+			"started_at": _paused_started,
+			"stopped_at": tracker_stopped,
+		}
+	else:
+		active_section = {
+			"view": _tracker_main_view,
+			"elapsed_time": tracker_stopped - _tracker_main_view_started,
+			"started_at": _tracker_main_view_started,
+			"stopped_at": tracker_stopped,
+		}
+	
+	session_data.sections.append(active_section)
+	
+	return session_data
+
 # Tracker functions
 func _start_tracking() -> void:
 	_tracker_started = OS.get_unix_time()
@@ -218,3 +252,39 @@ func set_paused_tracking(value: bool) -> void:
 	else:
 		pause_button.visible = true
 		resume_button.visible = false
+
+func restore_tracked_sessions(sessions : Array) -> void:
+	for session_data in sessions:
+		var session_node = tracker_session.instance()
+		session_node.session_name = session_data.session_name
+		session_node.elapsed_time = session_data.elapsed_time
+		session_node.started_at = session_data.started_at
+		session_node.stopped_at = session_data.stopped_at
+		session_node.sections = session_data.sections
+		session_list.add_child(session_node)
+		
+	session_name_input.text = "Session #" + str(session_list.get_child_count() + 1)
+	
+	if (no_sessions_label.visible):
+		no_sessions_label.hide()
+		sessions_container.show()
+
+func get_tracked_sessions() -> Array:
+	var sessions := []
+	
+	for session_node in session_list.get_children():
+		var session_data := {
+			"session_name": session_node.session_name,
+			"elapsed_time": session_node.elapsed_time,
+			"started_at": session_node.started_at,
+			"stopped_at": session_node.stopped_at,
+			"sections": session_node.sections,
+		}
+		
+		sessions.append(session_data)
+	
+	if (_active_tracking):
+		var active_session = _mock_session()
+		sessions.append(active_session)
+	
+	return sessions
