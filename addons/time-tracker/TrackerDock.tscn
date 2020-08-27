@@ -2,7 +2,7 @@
 
 [ext_resource path="res://addons/time-tracker/TrackerDock.gd" type="Script" id=1]
 
-[sub_resource type="Image" id=1]
+[sub_resource type="Image" id=3]
 data = {
 "data": PoolByteArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ),
 "format": "LumAlpha8",
@@ -14,7 +14,7 @@ data = {
 [sub_resource type="ImageTexture" id=2]
 flags = 4
 flags = 4
-image = SubResource( 1 )
+image = SubResource( 3 )
 size = Vector2( 16, 16 )
 
 [node name="TrackerDock" type="Control"]
@@ -143,18 +143,33 @@ margin_bottom = 90.0
 
 [node name="SessionsLabel" type="Label" parent="Margin/Layout/SessionsHeader"]
 margin_top = 3.0
-margin_right = 312.0
+margin_right = 190.0
 margin_bottom = 17.0
 size_flags_horizontal = 3
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Recorded Sessions:"
 
+[node name="SaveButton" type="Button" parent="Margin/Layout/SessionsHeader"]
+margin_left = 194.0
+margin_right = 267.0
+margin_bottom = 20.0
+hint_tooltip = "Save all currently recorded sessions into a file."
+text = "Save As..."
+flat = true
+
+[node name="RestoreButton" type="Button" parent="Margin/Layout/SessionsHeader"]
+margin_left = 271.0
+margin_right = 344.0
+margin_bottom = 20.0
+hint_tooltip = "Restore recorded sessions from a file (overrides current data)."
+text = "Restore..."
+flat = true
+
 [node name="ClearButton" type="Button" parent="Margin/Layout/SessionsHeader"]
-margin_left = 316.0
+margin_left = 348.0
 margin_right = 360.0
 margin_bottom = 20.0
 hint_tooltip = "Clear all recorded sessions."
-text = "Clear"
 flat = true
 
 [node name="Padding3" type="Control" parent="Margin/Layout"]
@@ -188,3 +203,35 @@ margin_bottom = 124.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Finished sessions will be displayed here."
 align = 1
+
+[node name="ClearConfirmDialog" type="ConfirmationDialog" parent="."]
+margin_right = 200.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 360, 120 )
+popup_exclusive = true
+window_title = "Clear recorded sessions"
+dialog_text = "This action will clear all recorded sessions from memory.
+
+Do you want to continue?"
+dialog_autowrap = true
+
+[node name="SaveFileDialog" type="FileDialog" parent="."]
+margin_right = 315.0
+margin_bottom = 130.0
+rect_min_size = Vector2( 640, 480 )
+popup_exclusive = true
+access = 2
+filters = PoolStringArray( "*.json ; JSON" )
+current_dir = "/"
+current_path = "/"
+
+[node name="RestoreFileDialog" type="FileDialog" parent="."]
+margin_right = 315.0
+margin_bottom = 130.0
+rect_min_size = Vector2( 640, 480 )
+window_title = "Open a File"
+mode = 0
+access = 2
+filters = PoolStringArray( "*.json ; JSON" )
+current_dir = "/"
+current_path = "/"

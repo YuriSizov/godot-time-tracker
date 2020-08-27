@@ -11,6 +11,9 @@ func _enter_tree() -> void:
 	add_control_to_dock(EditorPlugin.DOCK_SLOT_RIGHT_BL, _dock_instance)
 	
 	_load_sessions()
+	_dock_instance.connect("sessions_changed", self, "_store_sessions")
+	_dock_instance.connect("save_requested", self, "_store_sessions_to_file")
+	_dock_instance.connect("restore_requested", self, "_load_sessions_from_file")
 	
 	# Try to find controls immediately (it will fail if not ready yet).
 	_on_editor_base_ready()
@@ -27,13 +30,16 @@ func _exit_tree() -> void:
 	_dock_instance.queue_free()
 
 func _load_sessions() -> void:
+	_load_sessions_from_file(STORED_SESSIONS_PATH)
+
+func _load_sessions_from_file(file_path : String) -> void:
 	var file = File.new()
-	if (!file.file_exists(STORED_SESSIONS_PATH)):
+	if (!file.file_exists(file_path)):
 		return
 	
-	var error = file.open(STORED_SESSIONS_PATH, File.READ)
+	var error = file.open(file_path, File.READ)
 	if (error != OK):
-		printerr("Failed to open tracked sessions file for reading: Error code " + str(error))
+		printerr("Failed to open sessions file '" + file_path + "' for reading: Error code " + str(error))
 		return
 	
 	var stored_string = file.get_as_text()
@@ -48,13 +54,16 @@ func _load_sessions() -> void:
 	file.close()
 
 func _store_sessions() -> void:
+	_store_sessions_to_file(STORED_SESSIONS_PATH)
+
+func _store_sessions_to_file(file_path : String) -> void:
 	var tracked_sessions = _dock_instance.get_tracked_sessions()
 	var stored_string = JSON.print(tracked_sessions, "  ")
 	
 	var file = File.new()
-	var error = file.open(STORED_SESSIONS_PATH, File.WRITE)
+	var error = file.open(file_path, File.WRITE)
 	if (error != OK):
-		printerr("Failed to open tracked sessions file for writing: Error code " + str(error))
+		printerr("Failed to open sessions file '" + file_path + "' for writing: Error code " + str(error))
 		return
 	
 	file.store_string(stored_string)

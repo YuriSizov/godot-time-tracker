@@ -40,6 +40,8 @@ var _section_colors : Dictionary = {
 # Scene references
 onready var section_scene = preload("res://addons/time-tracker/TrackerSessionSection.tscn")
 
+signal name_changed()
+
 func _ready() -> void:
 	_update_theme()
 	_update_name()
@@ -224,6 +226,7 @@ func _on_save_name_pressed() -> void:
 	
 	name_label.show()
 	edit_name_button.show()
+	emit_signal("name_changed")
 
 func _on_cancel_name_pressed() -> void:
 	name_input.hide()

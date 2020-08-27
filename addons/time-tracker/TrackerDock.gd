@@ -15,7 +15,14 @@ onready var pause_button : Button = $Margin/Layout/Controls/PauseButton
 onready var resume_button : Button = $Margin/Layout/Controls/ResumeButton
 onready var stop_button : Button = $Margin/Layout/Controls/StopButton
 onready var lap_button : Button = $Margin/Layout/Controls/LapButton
+
+onready var save_button : Button = $Margin/Layout/SessionsHeader/SaveButton
+onready var restore_button : Button = $Margin/Layout/SessionsHeader/RestoreButton
 onready var clear_button : Button = $Margin/Layout/SessionsHeader/ClearButton
+
+onready var save_file_dialog : FileDialog = $SaveFileDialog
+onready var restore_file_dialog : FileDialog = $RestoreFileDialog
+onready var clear_confirm_dialog : ConfirmationDialog = $ClearConfirmDialog
 
 # Private properties
 var _active_tracking : bool = false
@@ -32,6 +39,10 @@ var _paused_started : int = 0
 # Scene references
 onready var tracker_session = preload("res://addons/time-tracker/TrackerSession.tscn")
 
+signal sessions_changed()
+signal save_requested(file_path)
+signal restore_requested(file_path)
+
 func _ready() -> void:
 	_update_theme()
 	
@@ -40,7 +51,20 @@ func _ready() -> void:
 	resume_button.connect("pressed", self, "_resume_tracking")
 	stop_button.connect("pressed", self, "_stop_tracking")
 	lap_button.connect("pressed", self, "_lap_tracking")
-	clear_button.connect("pressed", self, "_clear_records")
+	
+	save_button.connect("pressed", self, "_on_save_records_requested")
+	restore_button.connect("pressed", self, "_on_restore_records_requested")
+	clear_button.connect("pressed", self, "_on_clear_records_requested")
+	
+	var default_path = ProjectSettings.globalize_path("res://")
+	save_file_dialog.current_dir = default_path
+	save_file_dialog.current_path = default_path
+	restore_file_dialog.current_dir = default_path
+	restore_file_dialog.current_path = default_path
+	
+	save_file_dialog.connect("file_selected", self, "_on_save_file_confirmed")
+	restore_file_dialog.connect("file_selected", self, "_on_restore_file_confirmed")
+	clear_confirm_dialog.connect("confirmed", self, "_on_clear_records_confirmed")
 	
 	rect_size = rect_min_size
 
@@ -64,6 +88,8 @@ func _update_theme() -> void:
 	resume_button.icon = get_icon("PlayStart", "EditorIcons")
 	stop_button.icon = get_icon("Stop", "EditorIcons")
 	lap_button.icon = get_icon("Rotate0", "EditorIcons")
+	
+	clear_button.icon = get_icon("Remove", "EditorIcons")
 	
 	sessions_label.add_color_override("font_color", get_color("contrast_color_2", "Editor"))
 	status_label.add_color_override("font_color", get_color("contrast_color_2", "Editor"))
@@ -106,6 +132,7 @@ func _create_session() -> void:
 	session_node.stopped_at = tracker_stopped
 	session_node.sections = _tracker_sections
 	session_list.add_child(session_node)
+	session_node.connect("name_changed", self, "_on_session_name_changed")
 	
 	session_name_input.text = "Session #" + str(session_list.get_child_count() + 1)
 	
@@ -197,6 +224,7 @@ func _stop_tracking() -> void:
 	
 	_tracker_sections = []
 	status_value_label.text = "On a break"
+	emit_signal("sessions_changed")
 
 func _lap_tracking() -> void:
 	_create_session()
@@ -208,11 +236,16 @@ func _lap_tracking() -> void:
 	_paused_started = 0
 
 	_tracker_sections = []
+	emit_signal("sessions_changed")
 
 func _clear_records() -> void:
 	for child_node in session_list.get_children():
 		session_list.remove_child(child_node)
 		child_node.queue_free()
+	
+	if (!no_sessions_label.visible):
+		sessions_container.hide()
+		no_sessions_label.show()
 
 # Properties
 func set_main_view(view_name: String) -> void:
@@ -254,6 +287,8 @@ func set_paused_tracking(value: bool) -> void:
 		resume_button.visible = false
 
 func restore_tracked_sessions(sessions : Array) -> void:
+	_clear_records()
+	
 	for session_data in sessions:
 		var session_node = tracker_session.instance()
 		session_node.session_name = session_data.session_name
@@ -262,6 +297,7 @@ func restore_tracked_sessions(sessions : Array) -> void:
 		session_node.stopped_at = session_data.stopped_at
 		session_node.sections = session_data.sections
 		session_list.add_child(session_node)
+		session_node.connect("name_changed", self, "_on_session_name_changed")
 		
 	session_name_input.text = "Session #" + str(session_list.get_child_count() + 1)
 	
@@ -288,3 +324,26 @@ func get_tracked_sessions() -> Array:
 		sessions.append(active_session)
 	
 	return sessions
+
+# Event handlers
+func _on_save_records_requested() -> void:
+	save_file_dialog.popup_centered(save_file_dialog.rect_min_size)
+
+func _on_save_file_confirmed(file_path : String) -> void:
+	emit_signal("save_requested", file_path)
+
+func _on_restore_records_requested() -> void:
+	restore_file_dialog.popup_centered(restore_file_dialog.rect_min_size)
+
+func _on_restore_file_confirmed(file_path : String) -> void:
+	emit_signal("restore_requested", file_path)
+
+func _on_clear_records_requested() -> void:
+	clear_confirm_dialog.popup_centered(clear_confirm_dialog.rect_min_size)
+
+func _on_clear_records_confirmed() -> void:
+	_clear_records()
+	emit_signal("sessions_changed")
+
+func _on_session_name_changed() -> void:
+	emit_signal("sessions_changed")
