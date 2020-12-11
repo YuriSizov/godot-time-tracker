@@ -7,3 +7,5 @@ Developed in and tested against Godot 3.2.
 
 ## Installation
 Clone this repository or download it as ZIP. You only need to put `addons/time-tracker` folder inside your project folder. ZIP already has only necessary files.
+
+Also available from AssetLib within the Editor: https://godotengine.org/asset-library/asset/662.
