@@ -1,20 +1,23 @@
-tool
+@tool
 extends Control
 
 # Public properties
 var section_colors : Dictionary = {}
-var sections : Array = [] setget set_sections
+var sections : Array = []:
+	set(value):
+		sections = value
+		_update_sections()
 
 # Private properties
-var _graph_padding : Vector2 = Vector2(4, 2)
-var _background_color : Color = Color.darkgray
+var _graph_padding : Vector2 = Vector2(4, 20)
+var _background_color : Color = Color.DARK_GRAY
 
 func _ready() -> void:
 	_update_theme()
 	_update_sections()
 
 func _draw() -> void:
-	var graph_rect = Rect2(Vector2.ZERO + _graph_padding, rect_size - _graph_padding * 2)
+	var graph_rect = Rect2(Vector2.ZERO + _graph_padding, size - _graph_padding * 2)
 	draw_rect(graph_rect, _background_color, true)
 	
 	var total_time := 0.0
@@ -41,18 +44,13 @@ func _draw() -> void:
 
 # Helpers
 func _update_theme() -> void:
-	if (!Engine.editor_hint || !is_inside_tree()):
+	if (!Engine.is_editor_hint || !is_inside_tree()):
 		return
 	
-	_background_color = get_color("contrast_color_1", "Editor")
+	_background_color = get_theme_color("contrast_color_1", "Editor")
 
 func _update_sections() -> void:
 	if (!is_inside_tree()):
 		return
 	
-	update()
-
-# Properties
-func set_sections(value: Array) -> void:
-	sections = value
-	_update_sections()
+	queue_redraw()

@@ -17,3 +17,7 @@ __MACOSX
 .vscode
 .idea
 .tracked-sessions.json
+
+# Godot 4+ specific ignores
+.godot/
+/Export

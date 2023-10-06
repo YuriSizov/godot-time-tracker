@@ -1,15 +1,26 @@
-tool
+@tool
 extends VBoxContainer
 
 # Node references
-onready var icon_texture : TextureRect = $Information/IconContainer/Icon
-onready var name_label : Label = $Information/NameLabel
-onready var elapsed_time_label : Label = $Information/ElapsedLabel
+@onready var icon_texture : TextureRect = $Information/IconContainer/Icon
+@onready var name_label : Label = $Information/NameLabel
+@onready var elapsed_time_label : Label = $Information/ElapsedLabel
 
 # Public properties
-export var section_name : String = "" setget set_section_name
-export var section_color : Color = Color.white setget set_section_color
-export var elapsed_time : String = "" setget set_elapsed_time
+@export var section_name : String = "" :
+	set(value) :
+		section_name = value
+		_update_name()
+	
+@export var section_color : Color = Color.WHITE :
+	set(value) :
+		section_color = value
+		_update_icon()
+	
+@export var elapsed_time : String = "" :
+	set(value) :
+		elapsed_time = value
+		_update_elapsed_time()
 
 # Private properties
 var _section_icon : Texture
@@ -22,10 +33,10 @@ func _ready() -> void:
 
 # Helpers
 func _update_theme() -> void:
-	if (!Engine.editor_hint || !is_inside_tree()):
+	if (!Engine.is_editor_hint || !is_inside_tree()):
 		return
 	
-	_section_icon = get_icon("Node", "EditorIcons")
+	_section_icon = get_theme_icon("Node", "EditorIcons")
 
 func _update_icon() -> void:
 	if (!is_inside_tree()):
@@ -45,16 +56,3 @@ func _update_elapsed_time() -> void:
 		return
 	
 	elapsed_time_label.text = elapsed_time
-
-# Properties
-func set_section_name(value: String) -> void:
-	section_name = value
-	_update_name()
-
-func set_section_color(value: Color) -> void:
-	section_color = value
-	_update_icon()
-
-func set_elapsed_time(value: String) -> void:
-	elapsed_time = value
-	_update_elapsed_time()

@@ -1,44 +1,64 @@
-tool
+@tool
 extends VBoxContainer
 
 # Node references
-onready var name_label : Label = $Information/NameLabel
-onready var name_input : LineEdit = $Information/NameEdit
-onready var edit_name_button : Button = $Information/EditNameButton
-onready var save_name_button : Button = $Information/SaveNameButton
-onready var cancel_name_button : Button = $Information/CancelNameButton
-onready var elapsed_time_label : Label = $Information/ElapsedLabel
-onready var expand_sections_button : Button = $Information/ExpandSectionsButton
+@onready var name_label : Label = $Information/NameLabel
+@onready var name_input : LineEdit = $Information/NameEdit
+@onready var edit_name_button : Button = $Information/EditNameButton
+@onready var save_name_button : Button = $Information/SaveNameButton
+@onready var cancel_name_button : Button = $Information/CancelNameButton
+@onready var elapsed_time_label : Label = $Information/ElapsedLabel
+@onready var expand_sections_button : Button = $Information/ExpandSectionsButton
 
-onready var sections_container : Control = $Sections
-onready var section_list : Control = $Sections/Layout/SectionList
-onready var section_graph : Control = $Sections/Layout/SectionGraph
-onready var started_time : Control = $Sections/Layout/StartedTime
-onready var started_time_label : Label = $Sections/Layout/StartedTime/StartedTimeLabel
-onready var started_time_value : Label = $Sections/Layout/StartedTime/StartedTimeValue
-onready var stopped_time : Control = $Sections/Layout/StoppedTime
-onready var stopped_time_label : Label = $Sections/Layout/StoppedTime/StoppedTimeLabel
-onready var stopped_time_value : Label = $Sections/Layout/StoppedTime/StoppedTimeValue
+@onready var sections_container : Control = $Sections
+@onready var section_list : Control = $Sections/Layout/SectionList
+@onready var section_graph : Control = $Sections/Layout/SectionGraph
+@onready var started_time : Control = $Sections/Layout/StartedTime
+@onready var started_time_label : Label = $Sections/Layout/StartedTime/StartedTimeLabel
+@onready var started_time_value : Label = $Sections/Layout/StartedTime/StartedTimeValue
+@onready var stopped_time : Control = $Sections/Layout/StoppedTime
+@onready var stopped_time_label : Label = $Sections/Layout/StoppedTime/StoppedTimeLabel
+@onready var stopped_time_value : Label = $Sections/Layout/StoppedTime/StoppedTimeValue
 
 # Public properties
-export var session_name : String = "" setget set_session_name
-export var elapsed_time : int = 0 setget set_elapsed_time
-export var started_at : int = 0 setget set_started_at
-export var stopped_at : int = 0 setget set_stopped_at
-export var sections : Array = [] setget set_sections
+@export var session_name : String = "" :
+	set(value) : 
+		session_name = value
+		_update_name()
+
+@export var elapsed_time : int = 0 :
+	set(value) : 
+		elapsed_time = value
+		_update_elapsed_time()
+	
+@export var started_at : int = 0 :
+	set(value) : 
+		started_at = value
+		_update_started_time()
+
+@export var stopped_at : int = 0 :
+	set(value) : 
+		stopped_at = value
+		_update_stopped_time()
+
+@export var sections : Array = [] :
+	set(value) : 
+		sections = value
+		_update_sections()
+
 
 # Private properties
 var _section_colors : Dictionary = {
-	"_default": Color.white,
-	"_paused": Color.darkgray,
-	"2D": Color.aqua,
-	"3D": Color.rosybrown,
-	"Script": Color.yellow,
-	"AssetLib": Color.coral,
+	"_default": Color.WHITE,
+	"_paused": Color.DARK_GRAY,
+	"2D": Color.AQUA,
+	"3D": Color.ROSY_BROWN,
+	"Script": Color.YELLOW,
+	"AssetLib": Color.CORAL,
 }
 
 # Scene references
-onready var section_scene = preload("res://addons/time-tracker/TrackerSessionSection.tscn")
+@onready var section_scene = preload("res://addons/time-tracker/TrackerSessionSection.tscn")
 
 signal name_changed()
 
@@ -52,12 +72,12 @@ func _ready() -> void:
 	
 	section_graph.section_colors = _section_colors
 	
-	edit_name_button.connect("pressed", self, "_on_edit_name_pressed")
-	save_name_button.connect("pressed", self, "_on_save_name_pressed")
-	cancel_name_button.connect("pressed", self, "_on_cancel_name_pressed")
-	name_input.connect("gui_input", self, "_on_name_input_event")
+	edit_name_button.pressed.connect(_on_edit_name_pressed)
+	save_name_button.pressed.connect(_on_save_name_pressed)
+	cancel_name_button.pressed.connect(_on_cancel_name_pressed)
+	name_input.gui_input.connect(_on_name_input_event)
 	
-	expand_sections_button.connect("pressed", self, "_on_expand_sections_pressed")
+	expand_sections_button.pressed.connect(_on_expand_sections_pressed)
 
 # Helpers
 func _format_time(elapsed_seconds: int) -> String:
@@ -80,13 +100,13 @@ func _format_time(elapsed_seconds: int) -> String:
 	return time_string
 
 func _format_datetime(unix_time: int) -> String:
-	var timezone = OS.get_time_zone_info()
-	var datetime = OS.get_datetime_from_unix_time(unix_time + timezone["bias"] * 60)
+	var timezone = Time.get_time_zone_from_system()
+	var datetime = Time.get_datetime_dict_from_unix_time(unix_time + timezone["bias"] * 60)
 	
 	return str(datetime["hour"]) + ":" + str(datetime["minute"]).pad_zeros(2)
 
 func _format_datetime_iso(unix_time: int) -> String:
-	var datetime = OS.get_datetime_from_unix_time(unix_time)
+	var datetime = Time.get_datetime_dict_from_unix_time(unix_time)
 	
 	var result = ""
 	result += str(datetime["year"]) + "-" + str(datetime["month"]).pad_zeros(2) + "-" + str(datetime["day"]).pad_zeros(2)
@@ -95,27 +115,27 @@ func _format_datetime_iso(unix_time: int) -> String:
 	return result
 
 func _update_theme() -> void:
-	if (!Engine.editor_hint || !is_inside_tree()):
+	if (!Engine.is_editor_hint || !is_inside_tree()):
 		return
 	
-	edit_name_button.icon = get_icon("Edit", "EditorIcons")
-	save_name_button.icon = get_icon("ImportCheck", "EditorIcons")
-	cancel_name_button.icon = get_icon("ImportFail", "EditorIcons")
-	expand_sections_button.icon = get_icon("Collapse", "EditorIcons")
+	edit_name_button.icon = get_theme_icon("Edit", "EditorIcons")
+	save_name_button.icon = get_theme_icon("ImportCheck", "EditorIcons")
+	cancel_name_button.icon = get_theme_icon("ImportFail", "EditorIcons")
+	expand_sections_button.icon = get_theme_icon("Collapse", "EditorIcons")
 	
-	var panel_style = get_stylebox("panel", "Panel").duplicate(true)
+	var panel_style = get_theme_stylebox("panel", "Panel").duplicate(true)
 	if (panel_style is StyleBoxFlat):
-		panel_style.bg_color = get_color("dark_color_1", "Editor")
-	sections_container.add_stylebox_override("panel", panel_style)
+		panel_style.bg_color = get_theme_color("dark_color_1", "Editor")
+	sections_container.add_theme_stylebox_override("panel", panel_style)
 	
-	started_time_label.add_color_override("font_color", get_color("contrast_color_2", "Editor"))
-	stopped_time_label.add_color_override("font_color", get_color("contrast_color_2", "Editor"))
+	started_time_label.add_theme_color_override("font_color", get_theme_color("contrast_color_2", "Editor"))
+	stopped_time_label.add_theme_color_override("font_color", get_theme_color("contrast_color_2", "Editor"))
 	
-	_section_colors["_paused"] = get_color("contrast_color_1", "Editor")
-	_section_colors["2D"] = get_color("axis_z_color", "Editor")
-	_section_colors["3D"] = get_color("error_color", "Editor")
-	_section_colors["Script"] = get_color("warning_color", "Editor")
-	_section_colors["AssetLib"] = get_color("success_color", "Editor")
+	_section_colors["_paused"] = get_theme_color("contrast_color_1", "Editor")
+	_section_colors["2D"] = get_theme_color("axis_z_color", "Editor")
+	_section_colors["3D"] = get_theme_color("error_color", "Editor")
+	_section_colors["Script"] = get_theme_color("warning_color", "Editor")
+	_section_colors["AssetLib"] = get_theme_color("success_color", "Editor")
 
 func _update_name() -> void:
 	if (!is_inside_tree()):
@@ -135,14 +155,14 @@ func _update_started_time() -> void:
 		return
 	
 	started_time_value.text = _format_datetime(started_at)
-	started_time.hint_tooltip = _format_datetime_iso(started_at)
+	started_time.tooltip_text = _format_datetime_iso(started_at)
 
 func _update_stopped_time() -> void:
 	if (!is_inside_tree()):
 		return
 	
 	stopped_time_value.text = _format_datetime(stopped_at)
-	stopped_time.hint_tooltip = _format_datetime_iso(stopped_at)
+	stopped_time.tooltip_text = _format_datetime_iso(stopped_at)
 
 func _update_sections() -> void:
 	if (!is_inside_tree()):
@@ -174,7 +194,7 @@ func _update_sections() -> void:
 		if (_section_colors.has(section_name)):
 			section_color = _section_colors[section_name]
 		
-		var section_node = section_scene.instance()
+		var section_node = section_scene.instantiate()
 		section_node.section_name = section_name
 		if (section_name == "_paused"):
 			section_node.section_name = "> Intermission"
@@ -186,27 +206,6 @@ func _update_sections() -> void:
 	section_graph.sections = sections
 	
 	expand_sections_button.show()
-
-# Properties
-func set_session_name(value: String) -> void:
-	session_name = value
-	_update_name()
-
-func set_elapsed_time(value: int) -> void:
-	elapsed_time = value
-	_update_elapsed_time()
-
-func set_started_at(value: int) -> void:
-	started_at = value
-	_update_started_time()
-
-func set_stopped_at(value: int) -> void:
-	stopped_at = value
-	_update_stopped_time()
-
-func set_sections(value: Array) -> void:
-	sections = value
-	_update_sections()
 
 # Event handlers
 func _on_edit_name_pressed() -> void:
@@ -240,7 +239,7 @@ func _on_cancel_name_pressed() -> void:
 
 func _on_name_input_event(event: InputEvent) -> void:
 	if (event is InputEventKey && event.pressed && !event.echo):
-		if (event.scancode == KEY_ENTER || event.scancode == KEY_KP_ENTER):
+		if (event.keycode == KEY_ENTER || event.keycode == KEY_KP_ENTER):
 			_on_save_name_pressed()
 
 func _on_expand_sections_pressed() -> void:
