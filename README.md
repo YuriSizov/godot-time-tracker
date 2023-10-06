@@ -18,7 +18,8 @@ Developed in and tested against Godot 4.1.1.
 
 ## ToDo
 :white_square_button: Pause timer if Godot is inactive for some time
-:white_square_button: Timer when Godot is unfocus
+
+:white_square_button: Special timer when Godot is unfocus
 
 ## Knows issues
 :heavy_exclamation_mark: Not work with floting windows
