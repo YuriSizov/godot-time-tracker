@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://oo5r5lubxdep"
-path="res://.godot/imported/plugin-icon.png-9027342efc8fc87c5ca995c8f6c36f5a.ctex"
+path="res://.godot/imported/icon.png-43a6e44349f3cba4404c1b2f96ce1c90.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/time-tracker/plugin-icon.png"
-dest_files=["res://.godot/imported/plugin-icon.png-9027342efc8fc87c5ca995c8f6c36f5a.ctex"]
+source_file="res://addons/project-time-tracker/icon.png"
+dest_files=["res://.godot/imported/icon.png-43a6e44349f3cba4404c1b2f96ce1c90.ctex"]
 
 [params]
 

@@ -10,14 +10,14 @@ config_version=5
 
 [application]
 
-config/name="Plugin: Time Tracker"
-run/main_scene="res://addons/time-tracker/TrackerDock.tscn"
+config/name="Project Time Tracker"
+run/main_scene="res://addons/project-time-tracker/TrackerDock.tscn"
 config/features=PackedStringArray("4.1")
-config/icon="res://addons/time-tracker/plugin-icon.png"
+config/icon="res://addons/project-time-tracker/icon.png"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/time-tracker/plugin.cfg")
+enabled=PackedStringArray("res://addons/project-time-tracker/plugin.cfg")
 
 [rendering]
 

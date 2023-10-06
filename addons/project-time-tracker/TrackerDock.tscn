@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://rmi3joaeeoc"]
+[gd_scene load_steps=5 format=3 uid="uid://bnpcoyrwqfprq"]
 
-[ext_resource type="Script" path="res://addons/time-tracker/TrackerSessionSection.gd" id="1"]
+[ext_resource type="Script" path="res://addons/project-time-tracker/TrackerDock.gd" id="1_7v1fu"]
+[ext_resource type="Script" path="res://addons/project-time-tracker/SectionGraph.gd" id="2_0xje5"]
 
-[sub_resource type="Image" id="Image_ysfid"]
+[sub_resource type="Image" id="Image_2rpds"]
 data = {
 "data": PackedByteArray(255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 231, 255, 94, 94, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 231, 255, 94, 94, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 93, 93, 233, 255, 93, 93, 232, 255, 93, 93, 41, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 93, 93, 233, 255, 93, 93, 232, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 44, 255, 255, 255, 0, 255, 97, 97, 42, 255, 97, 97, 42, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 44, 255, 255, 255, 0, 255, 97, 97, 42, 255, 97, 97, 42, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 235, 255, 94, 94, 234, 255, 95, 95, 43, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 235, 255, 94, 94, 234, 255, 95, 95, 43, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 95, 95, 59, 255, 96, 96, 61, 255, 93, 93, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 95, 95, 59, 255, 96, 96, 61, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0),
 "format": "RGBA8",
@@ -11,29 +12,87 @@ data = {
 "width": 16
 }
 
-[sub_resource type="ImageTexture" id="ImageTexture_2nvyn"]
-image = SubResource("Image_ysfid")
+[sub_resource type="ImageTexture" id="ImageTexture_8wfe8"]
+image = SubResource("Image_2rpds")
 
-[node name="TrackerSessionSection" type="VBoxContainer"]
-anchors_preset = 15
+[node name="TrackerDock" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_7v1fu")
+
+[node name="Margin" type="MarginContainer" parent="."]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
+
+[node name="Layout" type="VBoxContainer" parent="Margin"]
+layout_mode = 2
+
+[node name="Status" type="HBoxContainer" parent="Margin/Layout"]
+layout_mode = 2
+
+[node name="StatusLabel" type="Label" parent="Margin/Layout/Status"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Status: "
+
+[node name="StatusValue" type="Label" parent="Margin/Layout/Status"]
+layout_mode = 2
 size_flags_horizontal = 3
-script = ExtResource("1")
+text = "Working for 00:00:00"
 
-[node name="Information" type="HBoxContainer" parent="."]
+[node name="ClearButton" type="Button" parent="Margin/Layout/Status"]
+layout_mode = 2
+icon = SubResource("ImageTexture_8wfe8")
+flat = true
+
+[node name="Padding1" type="Control" parent="Margin/Layout"]
 layout_mode = 2
 
-[node name="IconContainer" type="CenterContainer" parent="Information"]
+[node name="Controls" type="HBoxContainer" parent="Margin/Layout"]
 layout_mode = 2
 
-[node name="Icon" type="TextureRect" parent="Information/IconContainer"]
-layout_mode = 2
-texture = SubResource("ImageTexture_2nvyn")
-
-[node name="NameLabel" type="Label" parent="Information"]
+[node name="ResumeButton" type="Button" parent="Margin/Layout/Controls"]
 layout_mode = 2
 size_flags_horizontal = 3
+disabled = true
+text = "Resume"
+icon = SubResource("ImageTexture_8wfe8")
 
-[node name="ElapsedLabel" type="Label" parent="Information"]
+[node name="PauseButton" type="Button" parent="Margin/Layout/Controls"]
 layout_mode = 2
+size_flags_horizontal = 3
+text = "Pause"
+icon = SubResource("ImageTexture_8wfe8")
+
+[node name="Padding2" type="Control" parent="Margin/Layout"]
+layout_mode = 2
+
+[node name="SectionList" type="VBoxContainer" parent="Margin/Layout"]
+layout_mode = 2
+
+[node name="Padding3" type="Control" parent="Margin/Layout"]
+layout_mode = 2
+
+[node name="SectionGraph" type="HBoxContainer" parent="Margin/Layout"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+theme_override_constants/separation = 0
+script = ExtResource("2_0xje5")
+
+[node name="ClearConfirmDialog" type="ConfirmationDialog" parent="."]
+size = Vector2i(400, 200)
+dialog_text = "This action will clear all recorded sections from memory.
+
+Do you want to continue?"
+dialog_autowrap = true
+
+[node name="ClearSectionConfirmDialog" type="ConfirmationDialog" parent="."]
+size = Vector2i(400, 200)
+dialog_text = "This action will clear all recorded sessions from memory.
+
+Do you want to continue?"
+dialog_autowrap = true
+
+[node name="TimerUpdate" type="Timer" parent="."]
+autostart = true
