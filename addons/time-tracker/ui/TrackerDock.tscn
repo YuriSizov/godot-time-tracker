@@ -1,0 +1,163 @@
+[gd_scene load_steps=2 format=3 uid="uid://xdmaclo0w4fs"]
+
+[ext_resource type="Script" path="res://addons/time-tracker/ui/TrackerDock.gd" id="1"]
+
+[node name="TrackerDock" type="MarginContainer"]
+custom_minimum_size = Vector2(360, 240)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -792.0
+offset_bottom = -408.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+script = ExtResource("1")
+
+[node name="Margin" type="MarginContainer" parent="."]
+layout_mode = 2
+
+[node name="Layout" type="VBoxContainer" parent="Margin"]
+layout_mode = 2
+
+[node name="Status" type="HBoxContainer" parent="Margin/Layout"]
+layout_mode = 2
+
+[node name="StatusLabel" type="Label" parent="Margin/Layout/Status"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Status: "
+
+[node name="StatusValue" type="Label" parent="Margin/Layout/Status"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "On a break"
+
+[node name="SessionName" type="LineEdit" parent="Margin/Layout/Status"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "Session #1"
+caret_blink = true
+caret_blink_interval = 0.5
+
+[node name="Padding" type="Control" parent="Margin/Layout"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+
+[node name="Controls" type="HBoxContainer" parent="Margin/Layout"]
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="Margin/Layout/Controls"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Start tracking a new session."
+text = "Start"
+
+[node name="PauseButton" type="Button" parent="Margin/Layout/Controls"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Put tracking of the current session on hold."
+disabled = true
+text = "Pause"
+
+[node name="ResumeButton" type="Button" parent="Margin/Layout/Controls"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Continue tracking the current session."
+disabled = true
+text = "Resume"
+
+[node name="StopButton" type="Button" parent="Margin/Layout/Controls"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Stop tracking the current session and record it."
+disabled = true
+text = "Finish"
+
+[node name="LapButton" type="Button" parent="Margin/Layout/Controls"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Mark the current session as finished, and immediately start a new one."
+disabled = true
+text = "Mark"
+
+[node name="Padding2" type="Control" parent="Margin/Layout"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+
+[node name="SessionsHeader" type="HBoxContainer" parent="Margin/Layout"]
+layout_mode = 2
+
+[node name="SessionsLabel" type="Label" parent="Margin/Layout/SessionsHeader"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Recorded Sessions:"
+
+[node name="SaveButton" type="Button" parent="Margin/Layout/SessionsHeader"]
+layout_mode = 2
+tooltip_text = "Save all currently recorded sessions into a file."
+text = "Save As..."
+flat = true
+
+[node name="RestoreButton" type="Button" parent="Margin/Layout/SessionsHeader"]
+layout_mode = 2
+tooltip_text = "Restore recorded sessions from a file (overrides current data)."
+text = "Restore..."
+flat = true
+
+[node name="ClearButton" type="Button" parent="Margin/Layout/SessionsHeader"]
+layout_mode = 2
+tooltip_text = "Clear all recorded sessions."
+flat = true
+
+[node name="Padding3" type="Control" parent="Margin/Layout"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="Margin/Layout"]
+layout_mode = 2
+
+[node name="SessionsContainer" type="ScrollContainer" parent="Margin/Layout"]
+visible = false
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Sessions" type="VBoxContainer" parent="Margin/Layout/SessionsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NoSessionsLabel" type="Label" parent="Margin/Layout"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Finished sessions will be displayed here."
+
+[node name="ClearConfirmDialog" type="ConfirmationDialog" parent="."]
+title = "Clear recorded sessions"
+size = Vector2i(360, 187)
+min_size = Vector2i(360, 120)
+dialog_text = "This action will clear all recorded sessions from memory.
+
+Do you want to continue?"
+dialog_autowrap = true
+
+[node name="SaveFileDialog" type="FileDialog" parent="."]
+size = Vector2i(640, 480)
+min_size = Vector2i(640, 480)
+access = 2
+filters = PackedStringArray("*.json ; JSON")
+
+[node name="RestoreFileDialog" type="FileDialog" parent="."]
+title = "Open a File"
+size = Vector2i(640, 480)
+min_size = Vector2i(640, 480)
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.json ; JSON")

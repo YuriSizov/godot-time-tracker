@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0srk6v0avug"]
+
+[ext_resource type="Script" path="res://addons/time-tracker/ui/TrackerSessionSection.gd" id="1"]
+
+[node name="TrackerSessionSection" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+script = ExtResource("1")
+
+[node name="Information" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="IconContainer" type="CenterContainer" parent="Information"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="Information/IconContainer"]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="Information"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ElapsedLabel" type="Label" parent="Information"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2

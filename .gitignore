@@ -1,7 +1,6 @@
 
 # Godot-specific ignores
-.import/
-default_env.tres
+.godot/
 
 # Mono-specific ignores
 .mono/

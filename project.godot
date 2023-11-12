@@ -6,23 +6,15 @@
 ;   [section] ; section goes between []
 ;   param=value ; assign values to parameters
 
-config_version=4
-
-_global_script_classes=[  ]
-_global_script_class_icons={
-
-}
+config_version=5
 
 [application]
 
 config/name="Plugin: Time Tracker"
-run/main_scene="res://addons/time-tracker/TrackerDock.tscn"
+run/main_scene="res://addons/time-tracker/ui/TrackerDock.tscn"
+config/features=PackedStringArray("4.1")
 config/icon="res://addons/time-tracker/plugin-icon.png"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "time-tracker" )
-
-[rendering]
-
-environment/default_environment="res://default_env.tres"
+enabled=PackedStringArray("res://addons/time-tracker/plugin.cfg")

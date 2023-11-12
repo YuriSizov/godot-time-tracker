@@ -1,0 +1,113 @@
+[gd_scene load_steps=4 format=3 uid="uid://bwuyxi2bq44ym"]
+
+[ext_resource type="Script" path="res://addons/time-tracker/ui/TrackerSession.gd" id="1"]
+[ext_resource type="Script" path="res://addons/time-tracker/ui/SectionGraph.gd" id="2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hy3c4"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[node name="TrackerSession" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+script = ExtResource("1")
+
+[node name="Information" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="Information"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+clip_text = true
+
+[node name="EditNameButton" type="Button" parent="Information"]
+layout_mode = 2
+tooltip_text = "Edit the name of this session."
+flat = true
+
+[node name="NameEdit" type="LineEdit" parent="Information"]
+visible = false
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+
+[node name="SaveNameButton" type="Button" parent="Information"]
+visible = false
+layout_mode = 2
+tooltip_text = "Save the name change."
+flat = true
+
+[node name="CancelNameButton" type="Button" parent="Information"]
+visible = false
+layout_mode = 2
+tooltip_text = "Cancel the name change."
+flat = true
+
+[node name="ElapsedLabel" type="Label" parent="Information"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "less than a second"
+
+[node name="ExpandSectionsButton" type="Button" parent="Information"]
+visible = false
+layout_mode = 2
+tooltip_text = "Show detailed information."
+flat = true
+
+[node name="Sections" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hy3c4")
+
+[node name="Layout" type="VBoxContainer" parent="Sections"]
+layout_mode = 2
+
+[node name="StartedTime" type="HBoxContainer" parent="Sections/Layout"]
+layout_mode = 2
+tooltip_text = "1970-01-01T00:00:00Z"
+
+[node name="StartedTimeLabel" type="Label" parent="Sections/Layout/StartedTime"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Started: "
+
+[node name="StartedTimeValue" type="Label" parent="Sections/Layout/StartedTime"]
+layout_mode = 2
+text = "1:00"
+
+[node name="StoppedTime" type="HBoxContainer" parent="Sections/Layout"]
+layout_mode = 2
+tooltip_text = "1970-01-01T00:00:00Z"
+
+[node name="StoppedTimeLabel" type="Label" parent="Sections/Layout/StoppedTime"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Stopped: "
+
+[node name="StoppedTimeValue" type="Label" parent="Sections/Layout/StoppedTime"]
+layout_mode = 2
+text = "1:00"
+
+[node name="SectionList" type="VBoxContainer" parent="Sections/Layout"]
+layout_mode = 2
+
+[node name="SectionGraph" type="Control" parent="Sections/Layout"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("2")
+
+[node name="HSeparator" type="HSeparator" parent="."]
+layout_mode = 2
